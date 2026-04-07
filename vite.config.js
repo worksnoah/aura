@@ -5,7 +5,7 @@ import { VitePWA } from "vite-plugin-pwa";
 const repoName = "ambient-web-music-player";
 
 export default defineConfig({
-  base: `/${repoName}/`,
+  base: "/ambient-web-music-player/",
   plugins: [
     react(),
     VitePWA({
