@@ -337,17 +337,26 @@ button {
   pointer-events: none;
 }
 
-.logout-btn {
+.logout-zone {
   position: absolute;
-  top: 28px;
-  right: 28px;
+  top: 12px;
+  right: 12px;
+  width: 96px;
+  height: 96px;
   z-index: 20;
 
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.logout-btn {
   width: 46px;
   height: 46px;
+  margin: 16px;
+
   border-radius: 50%;
   border: none;
-
   background: rgba(255, 255, 255, 0.96);
   color: black;
 
@@ -356,14 +365,15 @@ button {
   justify-content: center;
 
   opacity: 0;
-  transform: scale(0.92);
+  transform: scale(0.9);
   transition:
     opacity 180ms ease,
     transform 180ms ease,
     background 180ms ease;
 }
 
-.app:hover .logout-btn {
+.logout-zone:hover .logout-btn,
+.logout-btn:focus-visible {
   opacity: 1;
   transform: scale(1);
 }

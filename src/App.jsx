@@ -179,17 +179,19 @@ export default function App() {
       <div className="mesh-bg" />
       <div className="grain" />
 
-      <button className="logout-btn" onClick={logout} aria-label="Log out">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-          <path
-            d="M9 6h9v9M18 6L6 18"
-            stroke="black"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </button>
+      <div className="logout-zone">
+        <button className="logout-btn" onClick={logout} aria-label="Log out">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M9 6h9v9M18 6L6 18"
+              stroke="black"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+      </div>
 
       <main className="layout">
         <section className="left-column">
