@@ -267,8 +267,8 @@ button {
 
 .lyric-line {
   margin: 0;
-  height: 112px;
-  padding: 0 48px;
+  height: 150px;
+  padding: 0 72px;
 
   display: flex;
   align-items: center;
@@ -284,18 +284,18 @@ button {
 
 .lyric-line-inner {
   display: block;
-  width: min(980px, 100%);
+  width: min(900px, 100%);
   text-align: left;
 
-  font-size: clamp(2.1rem, 3.2vw, 4rem);
+  font-size: clamp(1.9rem, 2.8vw, 3.4rem);
   font-weight: 700;
   line-height: 1.06;
   letter-spacing: -0.035em;
+
   color: rgba(255, 255, 255, 0.22);
 
   white-space: normal;
   overflow-wrap: anywhere;
-  word-break: normal;
 }
 
 .lyric-line.active {

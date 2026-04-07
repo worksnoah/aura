@@ -140,8 +140,8 @@ export default function App() {
     "--g4": colors[3]
   };
 
-  const lyricLineHeight = 112;
-  const activeLineTop = 290; //try 270 or 310
+  const lyricLineHeight = 150;
+  const activeLineTop = 270; //try 270 or 310
   const lyricsTranslateY =
     activeLyricIndex >= 0
       ? `translateY(${activeLineTop - activeLyricIndex * lyricLineHeight}px)`
