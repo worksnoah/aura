@@ -160,7 +160,7 @@ button {
 .cover-art-frame {
   position: relative;
 
-  width: min(520px, 100%);   /* 🔥 controls size */
+  width: min(400px, 100%);   /* 🔥 controls size */
   aspect-ratio: 1 / 1;
 
   border-radius: 28px;
