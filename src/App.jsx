@@ -140,12 +140,12 @@ export default function App() {
     "--g4": colors[3]
   };
 
-  const lyricLineHeight = 78;
-  const anchorOffset = 156;
+  const lyricLineHeight = 112;
+  const activeLineTop = 290; //try 270 or 310
   const lyricsTranslateY =
     activeLyricIndex >= 0
-      ? `translateY(calc(${anchorOffset}px - ${activeLyricIndex} * ${lyricLineHeight}px))`
-      : "translateY(156px)";
+      ? `translateY(${activeLineTop - activeLyricIndex * lyricLineHeight}px)`
+      : `translateY(${activeLineTop}px)`;
 
   if (loadingAuth) {
     return (
