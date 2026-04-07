@@ -179,6 +179,18 @@ export default function App() {
       <div className="mesh-bg" />
       <div className="grain" />
 
+      <button className="logout-btn" onClick={logout} aria-label="Log out">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path
+            d="M9 6h9v9M18 6L6 18"
+            stroke="black"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </button>
+
       <main className="layout">
         <section className="left-column">
           <div className="cover-shell glass">
@@ -215,21 +227,7 @@ export default function App() {
           </div>
         </section>
 
-        <section className="lyrics-card glass">
-          <div className="lyrics-top">
-            <button className="logout-btn" onClick={logout}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M9 6h9v9M18 6L6 18"
-                  stroke="black"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-          </div>
-
+        <section className="lyrics-card">
           <div className="lyrics-viewport">
             {lyrics.length ? (
               <div
@@ -237,20 +235,21 @@ export default function App() {
                 style={{ transform: lyricsTranslateY }}
               >
                 {lyrics.map((line, index) => {
-                   const offset = index - activeLyricIndex;
-                   let className = "lyric-line";
-                   if (offset === 0) className += " active";
-                   else if (offset === 1) className += " next";
-                   else if (offset === 2) className += " near";
-                   else if (offset < 0) className += " past";
-                   else className += " far";
+                  const offset = index - activeLyricIndex;
+
+                  let className = "lyric-line";
+                  if (offset === 0) className += " active";
+                  else if (offset === 1) className += " next";
+                  else if (offset === 2) className += " near";
+                  else if (offset < 0) className += " past";
+                  else className += " far";
 
                   return (
                     <p
                       key={`${line.timeMs}-${index}`}
                       className={className}
                     >
-                      {line.text || "♪"}
+                      <span className="lyric-line-inner">{line.text || "♪"}</span>
                     </p>
                   );
                 })}
@@ -261,7 +260,7 @@ export default function App() {
               </div>
             )}
           </div>
-        </section>
+        </section> 
       </main>
     </div>
   );
