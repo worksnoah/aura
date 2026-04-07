@@ -18,8 +18,8 @@ export default defineConfig({
         theme_color: "#09090d",
         background_color: "#09090d",
         display: "standalone",
-        start_url: `/${repoName}/`,
-        scope: `/${repoName}/`,
+        start_url: "/ambient-web-music-player/",
+        scope: "/ambient-web-music-player/",
         icons: [
           {
             src: "pwa-192x192.png",
