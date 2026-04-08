@@ -14,6 +14,8 @@ import { getActiveLyricIndex, parseSyncedLyrics } from "./lib/lyrics";
 import { fetchWeather } from "./lib/weather";
 import HomeScreen from "./components/HomeScreen";
 import MusicScreen from "./components/MusicScreen";
+import { startAuraSpeechRecognition } from "./lib/auraVoice";
+import { askAura } from "./lib/auraAssistant";
 
 function formatTime(ms) {
   const totalSeconds = Math.floor((ms || 0) / 1000);
@@ -21,6 +23,9 @@ function formatTime(ms) {
   const seconds = totalSeconds % 60;
   return `${minutes}:${String(seconds).padStart(2, "0")}`;
 }
+
+const [auraText, setAuraText] = useState("");
+const [auraStatus, setAuraStatus] = useState("idle");
 
 export default function App() {
   const [loadingAuth, setLoadingAuth] = useState(true);
@@ -36,6 +41,48 @@ export default function App() {
     "rgb(18, 28, 54)"
   ]);
   const [clockTick, setClockTick] = useState(0);
+
+  useEffect(() => {
+  function handleKeyDown(event) {
+    const showMusicScreen = Boolean(track && isPlaying);
+
+    if (showMusicScreen) return;
+
+    if (event.shiftKey && event.key.toLowerCase() === "a") {
+      event.preventDefault();
+
+      if (auraStatus === "listening" || auraStatus === "thinking") {
+        return;
+      }
+
+      startAuraSpeechRecognition({
+        onStateChange: (state) => {
+          setAuraStatus(state);
+        },
+        onTranscript: async (transcript) => {
+          try {
+            setAuraStatus("thinking");
+            const text = await askAura(transcript);
+            setAuraText(text);
+          } catch (error) {
+            console.error(error);
+            setAuraText("Sorry, something went wrong.");
+          } finally {
+            setAuraStatus("idle");
+          }
+        },
+        onError: (error) => {
+          console.error(error);
+          setAuraStatus("idle");
+          setAuraText("Mic unavailable.");
+        }
+      });
+    }
+  }
+
+  window.addEventListener("keydown", handleKeyDown);
+  return () => window.removeEventListener("keydown", handleKeyDown);
+}, [track, isPlaying, auraStatus]);
 
   useEffect(() => {
     async function handleAuth() {

@@ -11,7 +11,7 @@ const motivationalLines = [
   "Create the atmosphere you want to live in."
 ];
 
-export default function HomeScreen({ weather }) {
+export default function HomeScreen({ weather, auraText, auraStatus }) {
   const now = new Date();
 
   const timeString = now.toLocaleTimeString([], {
@@ -48,6 +48,19 @@ export default function HomeScreen({ weather }) {
         <p className="home-line">{line}</p>
       </section>
 
+      <section className="home-aura-center">
+        {auraStatus === "listening" && (
+          <p className="home-aura-status">Listening…</p>
+        )}
+
+        {auraStatus === "thinking" && (
+          <p className="home-aura-status">Thinking…</p>
+        )}
+
+        {auraText && (
+          <p className="home-aura-text">{auraText}</p>
+        )}
+      </section>
       <section className="home-weather">
         {weather && (
           <>
@@ -61,3 +74,9 @@ export default function HomeScreen({ weather }) {
     </main>
   );
 }
+
+<HomeScreen
+  weather={weather}
+  auraText={auraText}
+  auraStatus={auraStatus}
+/>

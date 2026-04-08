@@ -50,6 +50,44 @@ button {
   cursor: pointer;
 }
 
+.home-aura-center {
+  position: absolute;
+  top: 50%;
+  left: 56%;
+  transform: translate(-50%, -50%);
+  width: min(620px, 44vw);
+  pointer-events: none;
+}
+
+.home-aura-status {
+  margin: 0;
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: -0.02em;
+}
+
+.home-aura-text {
+  margin: 0;
+  font-size: clamp(1.35rem, 2vw, 2rem);
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.92);
+  text-wrap: balance;
+}
+
+@media (max-width: 980px) {
+  .home-aura-center {
+    left: 50%;
+    top: 62%;
+    width: min(88vw, 520px);
+  }
+
+  .home-aura-text {
+    font-size: clamp(1.1rem, 4vw, 1.5rem);
+  }
+}
+
 .app {
   position: relative;
   width: 100vw;
