@@ -1,11 +1,18 @@
 export async function handler(event) {
+  if (event.httpMethod !== "POST") {
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ message: "Use POST with a JSON body." })
+    };
+  }
+
   try {
     const { prompt } = JSON.parse(event.body);
 
     const response = await fetch("https://api.openai.com/v1/responses", {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
+        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
