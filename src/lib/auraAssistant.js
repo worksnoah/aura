@@ -1,13 +1,11 @@
 export async function askAura(transcript) {
-  const response = await fetch("/.netlify/functions/aura", {
+  const response = await fetch("/.netlify/functions/ask", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ transcript })
-  });
+    body: JSON.stringify({ prompt: transcript })
+    });
 
-  const data = await response.json();
+    const data = await response.json();
+    setAuraResponse(data.text);
 
   if (!response.ok) {
     throw new Error(data?.error || "Aura request failed");
