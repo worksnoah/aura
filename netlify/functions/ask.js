@@ -17,7 +17,7 @@ export async function handler(event) {
       },
       body: JSON.stringify({
         model: "gpt-5.4-mini",
-        input: `Respond in 1-2 short sentences, clean and helpful: ${prompt}`
+        input: `Respond as a pirate using slang and many ARRR's: ${prompt}`
       })
     });
 
